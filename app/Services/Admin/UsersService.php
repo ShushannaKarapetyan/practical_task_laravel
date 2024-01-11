@@ -35,8 +35,21 @@ class UsersService
         })->get();
 
         // Merge global and user-specific activities
-        $allActivities = $userSpecificActivities->merge($globalActivities);
+        $mergedActivities = $userSpecificActivities->merge($globalActivities);
 
+        $allActivities = $this->filterActivities($mergedActivities, $request);
+
+        //TODO: implement pagination
+        return view('admin.users.show', compact('user', 'allActivities'));
+    }
+
+    /**
+     * @param $mergedActivities
+     * @param $request
+     * @return mixed
+     */
+    public function filterActivities($mergedActivities, $request): mixed
+    {
         $startDate = $request->input('start_date');
         $endDate = $request->input('end_date');
 
@@ -45,13 +58,12 @@ class UsersService
             $endDateFormatted = Carbon::createFromFormat('d/m/Y', $endDate)->format('Y-m-d');
 
             // Filter activities based on the date range
-            $allActivities = $allActivities->filter(function ($activity) use ($startDateFormatted, $endDateFormatted) {
+            return $mergedActivities->filter(function ($activity) use ($startDateFormatted, $endDateFormatted) {
                 $activityDate = Carbon::parse($activity->date);
                 return $activityDate->between($startDateFormatted, $endDateFormatted);
             });
         }
 
-        //TODO: implement pagination
-        return view('admin.users.show', compact('user', 'allActivities'));
+        return $mergedActivities;
     }
 }

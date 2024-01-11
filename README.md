@@ -4,9 +4,9 @@
 
 
 
-Please create Admin
+Please run this command to migrate tables and create Admin (email: admin@example.com, password: password)
 ```bash
-$ php artisan db:seed
+$ php artisan migrate:fresh --seed
 ```
 
 ---
@@ -36,5 +36,5 @@ $ php artisan db:seed
   APIs:
 - user registration
 - user login
-- get logged in user’s activities by a range of dates, for example, the range of
+- get logged-in user’s activities by a range of dates, for example, the range of
   dates may look like this “1/3/22 - 5/3/22"
