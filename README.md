@@ -4,10 +4,12 @@
 
 
 
-Please run this command to migrate tables and create Admin (email: admin@example.com, password: password)
+**Please run this command to migrate tables and create Admin (email: admin@example.com, password: password)**
 ```bash
 $ php artisan migrate:fresh --seed
 ```
+
+**I'm using a Laravel Blade template, and the postman routes we have don't return a JSON response, they return a view with the appropriate data.**
 
 ---
 ### Laravel Practical Task Requirements
