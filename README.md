@@ -1,9 +1,13 @@
-## About Project
 
 ---
 **NOTE**
 
 
+
+Please create Admin
+```bash
+$ php artisan db:seed
+```
 
 ---
 ### Laravel Practical Task Requirements
